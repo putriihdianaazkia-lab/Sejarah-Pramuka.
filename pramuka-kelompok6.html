@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<image></image>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajah Sejarah Pramuka Dunia & Indonesia - Lengkap</title>
+    <!-- Tailwind CSS untuk styling modern dan cerah -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        scoutBrown: '#8B4513',
+                        scoutLight: '#D2B48C',
+                        scoutGold: '#F59E0B',
+                        scoutGreen: '#10B981',
+                        scoutOrange: '#F97316',
+                        scoutDark: '#38220F'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome untuk ikon interaktif -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) translateX(15px) rotate(5deg); }
+        }
+        @keyframes floatFast {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) translateX(-20px) rotate(-8deg); }
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.8)); }
+            50% { opacity: 0.85; transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(245, 158, 11, 1)); }
+        }
+        @keyframes scoutWalk {
+            0% { transform: translateX(-50px) scaleX(1); }
+            50% { transform: translateX(50px) scaleX(1); }
+            50.1% { transform: translateX(50px) scaleX(-1); }
+            100% { transform: translateX(-50px) scaleX(-1); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
+            50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.9); }
+        }
+        
+        .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+        .animate-float-fast { animation: floatFast 4s ease-in-out infinite; }
+        .animate-flicker { animation: flicker 0.7s infinite ease-in-out; }
+        .animate-walk { animation: scoutWalk 12s ease-in-out infinite; }
+        .glow-box { animation: pulseGlow 3s infinite; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FEF3C7; }
+        ::-webkit-scrollbar-thumb { background: #D97706; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-200 via-orange-200 to-amber-300 min-h-screen text-scoutDark font-sans flex flex-col justify-between overflow-x-hidden relative">
+
+    <!-- LATAR BELAKANG AKTIF: GAMBAR KEMAH & API UNGGUN HIDUP DI BACKGROUND -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Ilustrasi Suasana Perkemahan Malam Ceria (Gradient overlay + siluet hidup) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-orange-400/40 via-amber-300/20 to-yellow-100/30"></div>
+
+        <!-- ELEMEN BERGERAK 1: Tenda Perkemahan Utama yang Melayang Lembut -->
+        <div class="absolute top-12 left-12 animate-float-slow text-7xl text-scoutBrown filter drop-shadow-lg">
+            <i class="fa-solid fa-campground"></i>
+        </div>
+        <div class="absolute bottom-16 right-20 animate-float-fast text-8xl text-orange-600 filter drop-shadow-lg" style="animation-delay: 1s;">
+            <i class="fa-solid fa-campground"></i>
+        </div>
+
+        <!-- ELEMEN BERGERAK 2: Api Unggun Bernyala / Berkobar di Background -->
+        <div class="absolute bottom-10 left-1/3 animate-flicker text-7xl text-scoutOrange filter drop-shadow-2xl">
+            <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="absolute top-1/4 right-1/4 animate-flicker text-6xl text-amber-600 filter drop-shadow-xl" style="animation-delay: 0.5s;">
+            <i class="fa-solid fa-fire"></i>
+        </div>
+
+        <!-- ELEMEN BERGERAK 3: Orang Sedang Berkemah / Pramuka Berjalan-jalan/Bergerak ke Kiri-Kanan -->
+        <div class="absolute bottom-24 left-1/4 animate-walk text-5xl text-emerald-700 flex items-center space-x-2 filter drop-shadow-md">
+            <i class="fa-solid fa-person-hiking"></i>
+            <span class="text-xs font-black bg-white/80 px-2 py-0.5 rounded-md text-scoutBrown shadow">Pramuka Siaga</span>
+        </div>
+        <div class="absolute top-1/3 left-10 animate-float-slow text-6xl text-scoutGold" style="animation-delay: 2s;">
+            <i class="fa-solid fa-compass"></i>
+        </div>
+        <div class="absolute bottom-1/3 right-12 animate-float-fast text-6xl text-emerald-600" style="animation-delay: 1.5s;">
+            <i class="fa-solid fa-seedling"></i>
+        </div>
+    </div>
+
+    <!-- 1. HALAMAN LOGIN (Gate Utama: Wajib Isi Nama) -->
+    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-4 transition-all duration-500">
+        <div class="bg-white/95 border-4 border-scoutGold rounded-3xl p-8 max-w-md w-full shadow-2xl text-center glow-box relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-4 bg-gradient-to-r from-scoutOrange via-scoutGold to-scoutGreen"></div>
+            
+            <div class="w-20 h-20 bg-gradient-to-tr from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-3xl shadow-lg animate-bounce">
+                <i class="fa-solid fa-campground"></i>
+            </div>
+            
+            <h2 class="text-2xl font-black text-scoutBrown mb-2">JELAJAH PRAMUKA</h2>
+            <p class="text-sm text-gray-600 mb-6">Masukkan nama lengkapmu untuk memulai petualangan materi lengkap Sejarah Kepramukaan Dunia & Indonesia!</p>
+            
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </span>
+                    <input type="text" id="username-input" placeholder="Ketik nama lengkapmu di sini..." required
+                        class="w-full pl-12 pr-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:border-orange-500 font-semibold text-scoutDark placeholder-gray-400 text-center">
+                </div>
+                <button type="submit" 
+                    class="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center justify-center space-x-2 text-lg">
+                    <span>Mulai Petualangan</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <p class="text-xs text-gray-400 mt-4">*Nama wajib diisi agar bisa mengakses seluruh materi & audio</p>
+        </div>
+    </div>
+
+    <!-- KONTROL AUDIO & MUSIK LATAR -->
+    <header class="relative z-10 bg-white/90 backdrop-blur-md border-b-2 border-scoutGold px-4 py-3 shadow-md flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="bg-orange-500 text-white w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow">
+                <i class="fa-solid fa-fire animate-flicker"></i>
+            </div>
+            <div>
+                <h1 class="font-black text-lg text-scoutBrown tracking-wide">PRAMUKAPEDIA</h1>
+                <p class="text-xs font-semibold text-emerald-700" id="welcome-user">Halo, Kakak Pengembara!</p>
+            </div>
+        </div>
+
+        <!-- Panel Kontrol Musik & Volume -->
+        <div class="flex flex-wrap items-center gap-3 bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200">
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleMusic()" id="music-toggle-btn" title="Putar/Hentikan Musik" class="w-9 h-9 bg-orange-500 hover:bg-orange-600 text-white rounded-xl flex items-center justify-center shadow transition">
+                    <i class="fa-solid fa-music" id="music-icon"></i>
+                </button>
+                <input type="file" id="custom-audio-input" accept="audio/*" class="hidden" onchange="loadCustomMusic(event)">
+                <button onclick="document.getElementById('custom-audio-input').click()" title="Ganti File Musik" class="px-2.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center space-x-1">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span class="hidden sm:inline">Ganti Lagu</span>
+                </button>
+            </div>
+
+            <!-- Kontrol Volume Naik / Turun -->
+            <div class="flex items-center space-x-2 border-l border-amber-300 pl-3">
+                <i class="fa-solid fa-volume-low text-amber-700 text-sm"></i>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" onchange="adjustVolume(this.value)" oninput="adjustVolume(this.value)"
+                    class="w-20 accent-orange-500 cursor-pointer">
+                <i class="fa-solid fa-volume-high text-amber-700 text-sm"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA SLIDE PRESENTASI -->
+    <main class="relative z-10 flex-grow max-w-5xl w-full mx-auto p-4 md:p-6 flex flex-col justify-center">
+        
+        <!-- PENGUMUMAN SAMBUTAN DI AWAL -->
+        <div id="greeting-banner" class="bg-gradient-to-r from-orange-500 to-amber-600 text-white p-4 rounded-2xl shadow-lg mb-6 flex items-center justify-between transition-all">
+            <div class="flex items-center space-x-3">
+                <div class="text-3xl"><i class="fa-solid fa-bullhorn animate-bounce"></i></div>
+                <div>
+                    <h3 class="font-bold text-base">Salam Pramuka!</h3>
+                    <p class="text-xs text-amber-100">Latar belakang kini hidup dengan animasi perkemahan dan api unggun bergerak. Nikmati seluruh 14 slide materi lengkap dengan narasi suara cewek!</p>
+                </div>
+            </div>
+            <button onclick="closeGreeting()" class="text-amber-200 hover:text-white p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+
+        <!-- KOTAK SLIDE MATERI -->
+        <div class="bg-white/95 backdrop-blur-md border-4 border-scoutGold rounded-3xl shadow-2xl p-6 md:p-8 relative min-h-[440px] flex flex-col justify-between">
+            
+            <!-- Header Slide & Tombol Suara Cewek -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-amber-100 pb-4 mb-6 gap-3">
+                <div>
+                    <span id="slide-category" class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase tracking-wider">Kategori</span>
+                    <h2 id="slide-title" class="text-2xl md:text-3xl font-black text-scoutBrown mt-1">Judul Materi</h2>
+                </div>
+                <button onclick="speakCurrentSlide()" id="speak-btn" class="self-start sm:self-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-md font-bold flex items-center space-x-2 transition transform active:scale-95">
+                    <i class="fa-solid fa-volume-high text-lg" id="speak-icon"></i>
+                    <span id="speak-text">Dengarkan Suara (Cewek)</span>
+                </button>
+            </div>
+
+            <!-- Isi Materi Slide -->
+            <div id="slide-content" class="text-gray-700 text-base md:text-lg leading-relaxed space-y-4 mb-6">
+                <!-- Konten dinamis lewat JS -->
+            </div>
+
+            <!-- Navigasi & Indikator Slide -->
+            <div class="flex items-center justify-between pt-4 border-t-2 border-amber-100">
+                <button onclick="prevSlide()" id="prev-btn" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow flex items-center space-x-2 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Sebelumnya</span>
+                </button>
+
+                <div class="text-center">
+                    <span class="text-sm font-bold text-scoutBrown" id="slide-counter">Slide 1 dari 14</span>
+                </div>
+
+                <button onclick="nextSlide()" id="next-btn" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-2xl shadow flex items-center space-x-2 transition">
+                    <span>Selanjutnya</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 text-center py-4 text-xs font-bold text-scoutDark opacity-90">
+        <p>Pramuka Indonesia • Satyaku Kudharmakan, Dharmaku Kubaktikan ⛺🔥</p>
+    </footer>
+
+    <!-- Audio Element untuk Musik Latar -->
+    <audio id="bg-audio" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=happy-commercial-ukulele-110411.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- SCRIPT LOGIKA UTAMA -->
+    <script>
+        // DAFTAR 14 SLIDE MATERI LENGKAP
+        const slides = [
+            {
+                category: "A. Sejarah Kepramukaan Dunia",
+                title: "1. Awal Mula Kepanduan & Baden-Powell",
+                text: "Sejarah kepramukaan dunia tidak dapat dipisahkan dari Robert Stephenson Smyth Baden-Powell, atau lebih dikenal sebagai Baden-Powell. Ia lahir di London, Inggris, pada 22 Februari 1857.<br><br>Baden-Powell merupakan seorang perwira Angkatan Darat Inggris. Selama bertugas, ia memperoleh pengalaman dalam pengintaian, membaca jejak, mengamati lingkungan, menentukan arah, kepemimpinan, dan kehidupan di alam terbuka. Pengalaman tersebut kemudian menjadi dasar untuk mengembangkan kegiatan kepanduan sebagai pendidikan bagi anak dan remaja."
+            },
+            {
+                category: "A. Sejarah Kepramukaan Dunia",
+                title: "2. Perkemahan Brownsea Island – 1907",
+                text: "Pada 1–9 Agustus 1907, Baden-Powell mengadakan sebuah perkemahan percobaan di Brownsea Island, Inggris. Kegiatan ini diikuti sekitar 20 anak laki-laki.<br><br>Dalam perkemahan tersebut, peserta belajar melalui kegiatan praktis seperti berkemah, mengamati alam, membaca jejak, bekerja sama, dan melatih kepemimpinan.<br><br>Perkemahan Brownsea Island kemudian dikenal sebagai tonggak awal gerakan kepanduan modern."
+            },
+            {
+                category: "A. Sejarah Kepramukaan Dunia",
+                title: "3. Terbitnya Scouting for Boys – 1908",
+                text: "Setelah perkemahan Brownsea Island, Baden-Powell mengembangkan gagasan kepanduannya dalam buku <b>Scouting for Boys</b> yang diterbitkan pada 1908.<br><br>Buku tersebut berisi berbagai kegiatan dan keterampilan kepanduan. Penerbitannya membuat gagasan kepanduan semakin dikenal dan kemudian menyebar ke berbagai negara."
+            },
+            {
+                category: "A. Sejarah Kepramukaan Dunia",
+                title: "4. Perkembangan Kepanduan Dunia & Jambore Pertama",
+                text: "Gerakan kepanduan terus berkembang dan kemudian memiliki kelompok usia serta kepanduan putri:<br>• 1910 → Gerakan Girl Guides mulai berkembang.<br>• 1916 → Cub Scouts diperkenalkan untuk anak-anak yang lebih muda.<br>• 1918 → Rover Scouts dikembangkan untuk anggota yang lebih dewasa.<br>• 1920 → Jambore Dunia pertama diselenggarakan di Olympia, London, Inggris.<br><br>Pada Jambore Dunia pertama tahun 1920, Baden-Powell diangkat sebagai Chief Scout of the World atau Bapak Pandu Sedunia. Dari Inggris, gerakan kepanduan kemudian berkembang menjadi gerakan pendidikan kepemudaan internasional."
+            },
+            {
+                category: "B. Sejarah Kepramukaan di Indonesia",
+                title: "1. Masuknya Kepanduan ke Indonesia (1912) & NIPV",
+                text: "Gerakan kepanduan yang berkembang di dunia kemudian masuk ke wilayah Hindia Belanda.<br><br>• <b>1912:</b> Kegiatan latihan kepanduan mulai berkembang di Batavia (sekarang Jakarta). Peristiwa ini menjadi salah satu tonggak awal keberadaan kepanduan di Indonesia.<br>• <b>1914:</b> Berkembang organisasi kepanduan bernama Nederlands-Indische Padvinders Vereeniging (NIPV). Pada masa itu istilah yang digunakan adalah padvinder untuk anggota kepanduan dan padvinderij untuk kegiatan kepanduan."
+            },
+            {
+                category: "B. Sejarah Kepramukaan di Indonesia",
+                title: "2. Kepanduan Bumiputera & Organisasi 1920-an",
+                text: "• <b>1916:</b> Muncul organisasi kepanduan dari kalangan bumiputera yaitu Javaansche Padvinders Organisatie (JPO) yang didirikan oleh Mangkunegara VII di Solo.<br>• <b>Tahun 1920-an:</b> Berkembang NPO di Bandung (1923), JIPO di Jakarta (1923), dan pada 1926 NPO serta JIPO melebur menjadi Indonesische Nationale Padvinderij Organisatie (INPO). Berkembang pula organisasi kepanduan berbasis agama, pendidikan, dan semangat kebangsaan."
+            },
+            {
+                category: "B. Sejarah Kepramukaan di Indonesia",
+                title: "3. Istilah 'Pandu' & Semangat Kebangsaan",
+                text: "• <b>Istilah Pandu:</b> H. Agus Salim memperkenalkan istilah 'Pandu' sebagai pengganti istilah padvinder dari Belanda.<br>• <b>Semangat Kebangsaan (1930-an):</b><br> - 1930: Berdiri Kepanduan Bangsa Indonesia (KBI).<br> - 1931: Berdiri Persatuan Antar Pandu-Pandu Indonesia (PAPI).<br> - 1938: PAPI berubah menjadi Badan Pusat Persaudaraan Kepanduan Indonesia (BPPKI).<br><br>Kepanduan tidak hanya mengajarkan keterampilan, tetapi juga menanamkan kedisiplinan, persatuan, nasionalisme, patriotisme, dan kepemimpinan."
+            },
+            {
+                category: "B. Sejarah Kepramukaan di Indonesia",
+                title: "4. Masa Pendudukan Jepang (1942) & Kemerdekaan",
+                text: "• <b>Masa Jepang (1942):</b> Organisasi kepanduan dibubarkan atau dilarang. Pemuda diarahkan ke Seinendan, Keibodan, dan PETA. Meski demikian, semangat kepanduan dan nasionalisme tetap menyala.<br>• <b>Setelah Merdeka (1945):</b> Pada 28 Desember 1945 berdiri Pandu Rakyat Indonesia di Surakarta, disusul berbagai organisasi kepanduan di berbagai daerah."
+            },
+            {
+                category: "B. Sejarah Kepramukaan di Indonesia",
+                title: "5. Perkembangan 1950-an & Usaha Penyatuan",
+                text: "Pada tahun 1950-an, jumlah organisasi kepanduan semakin banyak dan membentuk federasi:<br>• <b>IPINDO</b> (Ikatan Pandu Indonesia)<br>• <b>POPPINDO</b> (Persatuan Organisasi Pandu Putri Indonesia)<br>• <b>PERKINDO</b> (Persatuan Kepanduan Indonesia)<br><br>Banyaknya organisasi melahirkan kebutuhan wadah tunggal nasional. Presiden Soekarno dan Sri Sultan Hamengku Buwono IX menjadi tokoh kunci penyatuan demi pendidikan karakter generasi muda."
+            },
+            {
+                category: "C. Lahirnya Gerakan Pramuka – 1961",
+                title: "1. Hari Tunas & Keppres No. 238 Tahun 1961",
+                text: "• <b>9 Maret 1961 (Hari Tunas):</b> Diperkenalkan gagasan pembentukan organisasi Pramuka, diperingati sebagai Hari Tunas Gerakan Pramuka.<br>• <b>20 Mei 1961 (Keppres No. 238/1961):</b> Presiden Soekarno mengeluarkan Keputusan Presiden tentang Gerakan Pramuka sebagai dasar hukum organisasi pendidikan kepanduan nasional, dengan struktur awal MAPINAS (Majelis Pimpinan Nasional)."
+            },
+            {
+                category: "C. Lahirnya Gerakan Pramuka – 1961",
+                title: "2. Hari Ikrar & Hari Pramuka (14 Agustus 1961)",
+                text: "• <b>20 Juli 1961 (Hari Ikrar):</b> Organisasi kepanduan menyatakan ikrar meleburkan diri ke dalam Gerakan Pramuka.<br>• <b>14 Agustus 1961 (Hari Pramuka):</b> Gerakan Pramuka diperkenalkan secara resmi kepada masyarakat. Presiden Soekarno menyerahkan Panji Gerakan Pramuka kepada Sri Sultan Hamengku Buwono IX (Ketua Kwarnas pertama). Tanggal ini diperingati setiap tahun sebagai Hari Pramuka."
+            },
+            {
+                category: "D. Perkembangan Gerakan Pramuka",
+                title: "Perkembangan & Dasar Hukum Modern",
+                text: "Gerakan Pramuka terus berkembang sebagai organisasi pendidikan nonformal dengan kegiatan:<br>• Pembentukan karakter, kedisiplinan, kemandirian, dan kepemimpinan.<br>• Kerja sama, keterampilan hidup, dan kegiatan di alam terbuka.<br>• Cinta tanah air dan pengembangan tanggung jawab sosial.<br><br>Dasar hukum Gerakan Pramuka kemudian diperkuat dengan <b>Undang-Undang RI Nomor 12 Tahun 2010</b> tentang Gerakan Pramuka."
+            },
+            {
+                category: "E. Kesimpulan",
+                title: "Kesimpulan: Sejarah Dunia",
+                text: "Sejarah kepramukaan dunia bermula dari perkembangan gagasan Baden-Powell di Inggris, terutama melalui perkemahan Brownsea Island tahun 1907 dan penerbitan buku Scouting for Boys tahun 1908. Dari sana, gerakan kepanduan berkembang pesat dan menyebar luas ke berbagai penjuru dunia."
+            },
+            {
+                category: "E. Kesimpulan",
+                title: "Kesimpulan: Sejarah Indonesia",
+                text: "Di Indonesia, kepanduan bermula pada masa Hindia Belanda sekitar 1912 dan melahirkan banyak organisasi kepanduan. Pasca kemerdekaan, upaya penyatuan dilakukan hingga lahirlah Gerakan Pramuka melalui Keppres No. 238 Tahun 1961, yang diperkenalkan resmi pada 14 Agustus 1961 sebagai wadah tunggal pendidikan kepanduan nasional."
+            }
+        ];
+
+        let currentSlideIndex = 0;
+        let isMusicPlaying = false;
+        const bgAudio = document.getElementById('bg-audio');
+
+        // Fungsi Login
+        function handleLogin(event) {
+            event.preventDefault();
+            const name = document.getElementById('username-input').value.trim();
+            if (name !== "") {
+                document.getElementById('welcome-user').innerText = "Halo, " + name + "!";
+                const modal = document.getElementById('login-modal');
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
+                
+                setTimeout(() => {
+                    responsiveVoiceWelcome(name);
+                }, 800);
+            }
+        }
+
+        // Render Slide
+        function renderSlide() {
+            const slide = slides[currentSlideIndex];
+            document.getElementById('slide-category').innerText = slide.category;
+            document.getElementById('slide-title').innerText = slide.title;
+            document.getElementById('slide-content').innerHTML = `<p>${slide.text}</p>`;
+            document.getElementById('slide-counter').innerText = `Slide ${currentSlideIndex + 1} dari ${slides.length}`;
+
+            document.getElementById('prev-btn').disabled = currentSlideIndex === 0;
+            document.getElementById('next-btn').disabled = currentSlideIndex === slides.length - 1;
+            
+            window.speechSynthesis.cancel();
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderSlide();
+            }
+        }
+
+        function closeGreeting() {
+            const banner = document.getElementById('greeting-banner');
+            banner.style.opacity = '0';
+            setTimeout(() => banner.style.display = 'none', 300);
+        }
+
+        // Kontrol Musik Latar
+        function toggleMusic() {
+            const icon = document.getElementById('music-icon');
+            const btn = document.getElementById('music-toggle-btn');
+            if (isMusicPlaying) {
+                bgAudio.pause();
+                isMusicPlaying = false;
+                icon.className = "fa-solid fa-music";
+                btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                btn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+            } else {
+                bgAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    icon.className = "fa-solid fa-pause";
+                    btn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                    btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                }).catch(e => {
+                    alert("Klik area halaman terlebih dahulu sebelum memutar musik.");
+                });
+            }
+        }
+
+        function adjustVolume(val) {
+            bgAudio.volume = val;
+        }
+
+        // Ganti Musik lewat File Lokal
+        function loadCustomMusic(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                bgAudio.src = fileURL;
+                bgAudio.play().then(() => {
+                    isMusicPlaying = true;
+                    const icon = document.getElementById('music-icon');
+                    const btn = document.getElementById('music-toggle-btn');
+                    icon.className = "fa-solid fa-pause";
+                    btn.classList.remove('bg-orange-500');
+                    btn.classList.add('bg-emerald-600');
+                    alert("Musik latar berhasil diganti dengan file Anda!");
+                });
+            }
+        }
+
+        // Suara Orang Ngomong (Cewek) menggunakan Web Speech API
+        function speakCurrentSlide() {
+            if (!('speechSynthesis' in window)) {
+                alert("Maaf, browser Anda tidak mendukung fitur suara.");
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const slide = slides[currentSlideIndex];
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = slide.text;
+            const cleanText = tempDiv.textContent || tempDiv.innerText || "";
+
+            const textToSpeak = slide.title + ". " + cleanText;
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            utterance.lang = 'id-ID';
+            utterance.rate = 0.95;
+
+            const voices = window.speechSynthesis.getVoices();
+            const femaleVoice = voices.find(v => v.lang.includes('id') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('indonesia') || v.name.toLowerCase().includes('gadis') || v.name.toLowerCase().includes('siti')));
+            if (femaleVoice) {
+                utterance.voice = femaleVoice;
+            } else {
+                const indoVoice = voices.find(v => v.lang.includes('id'));
+                if (indoVoice) utterance.voice = indoVoice;
+            }
+
+            const speakBtnText = document.getElementById('speak-text');
+            const speakIcon = document.getElementById('speak-icon');
+
+            utterance.onstart = () => {
+                speakBtnText.innerText = "Sedang Bicara...";
+                speakIcon.className = "fa-solid fa-spinner fa-spin text-lg";
+            };
+
+            utterance.onend = () => {
+                speakBtnText.innerText = "Dengarkan Suara (Cewek)";
+                speakIcon.className = "fa-solid fa-volume-high text-lg";
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function responsiveVoiceWelcome(name) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance("Halo Kakak " + name + ", selamat datang di aplikasi lengkap sejarah Pramuka. Silakan jelajahi materinya.");
+                utterance.lang = 'id-ID';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        window.onload = function() {
+            renderSlide();
+        };
+    </script>
+</body>
+</html>
